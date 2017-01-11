@@ -1,0 +1,105 @@
+﻿{
+    ViewBag.Title = "index";
+}
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/ScriptControllers/ControllerBook.js"></script>
+
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+</style>
+
+<h2>Libros disponibles</h2>
+
+  <div class="col-sm-6 col-lg-4">                      
+      <input type="button" class="form-control btn-space" value="Agregar un libro nuevo" ng-click="AddnewBook()" />                    
+  </div>
+
+<div ng-app="myAppBook">
+    <div ng-controller="myCtrlBook" ng-init="getAllBook()" class="divList">
+        <p class="divHead">List of Books</p>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+                <td>
+                    <b>ID</b>
+                </td>
+                
+                <td>
+                    <b>Name</b>
+                </td>
+                
+                <td>
+                    <b>titulo</b>
+                </td>
+                
+                <td>
+                    <b>Edicion</b>
+                </td>
+                                
+            </tr>
+            <tr ng-repeat="book in books">
+                <td>
+                    {{book.id}}
+                </td>
+                
+                <td>
+                    {{book.bookName}}
+                </td>
+                
+                <td>
+                    {{book.tittle}}
+                </td>
+
+                <td>
+                    {{book.edition}}
+                </td>
+                
+                <td>
+                    <input type="button" class="btn btn-warning" value="Update" ng-click="takeBook(book)" />
+                    <input type="button" class="btn btn-danger" value="Delete" ng-click="returnBook(book)" />
+                </td>
+            </tr>
+        </table>
+        <div class="form-horizontal" role="form">
+            <div class="container">
+                <div class="row">
+                    <h2>
+                        <span id="spn">prestar libro a un cliente</span>
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Nombre del cliente:</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="ClientName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Cedula del cliente:</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="inputAddress" placeholder="Address" ng-model="Identyclient">
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <input type="button" id="btnSave" class="form-control btn-space" value="Submit" ng-click="TakeBook()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("BookID_")
+
+</div>
+

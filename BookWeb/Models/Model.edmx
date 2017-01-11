@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EvaluacionFrancisModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="EvaluacionFrancisModelStoreContainer">
+          <EntitySet Name="book" EntityType="EvaluacionFrancisModel.Store.book" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="bookClient" EntityType="EvaluacionFrancisModel.Store.bookClient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="client" EntityType="EvaluacionFrancisModel.Store.client" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__bookClien__id_bo__1A14E395" Association="EvaluacionFrancisModel.Store.FK__bookClien__id_bo__1A14E395">
+            <End Role="book" EntitySet="book" />
+            <End Role="bookClient" EntitySet="bookClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bookClien__id_us__1920BF5C" Association="EvaluacionFrancisModel.Store.FK__bookClien__id_us__1920BF5C">
+            <End Role="client" EntitySet="client" />
+            <End Role="bookClient" EntitySet="bookClient" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bookName" Type="varchar" MaxLength="50" />
+          <Property Name="tittle" Type="varchar" MaxLength="50" />
+          <Property Name="edition" Type="varchar" MaxLength="50" />
+          <Property Name="quality" Type="int" />
+        </EntityType>
+        <EntityType Name="bookClient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="int" />
+          <Property Name="id_book" Type="int" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="clientName" Type="varchar" MaxLength="50" />
+          <Property Name="idIdenti" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__bookClien__id_bo__1A14E395">
+          <End Role="book" Type="EvaluacionFrancisModel.Store.book" Multiplicity="0..1" />
+          <End Role="bookClient" Type="EvaluacionFrancisModel.Store.bookClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bookClient">
+              <PropertyRef Name="id_book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bookClien__id_us__1920BF5C">
+          <End Role="client" Type="EvaluacionFrancisModel.Store.client" Multiplicity="0..1" />
+          <End Role="bookClient" Type="EvaluacionFrancisModel.Store.bookClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bookClient">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EvaluacionFrancisModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BookClientsEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="books" EntityType="EvaluacionFrancisModel.book" />
+          <EntitySet Name="bookClients" EntityType="EvaluacionFrancisModel.bookClient" />
+          <EntitySet Name="clients" EntityType="EvaluacionFrancisModel.client" />
+          <AssociationSet Name="FK__bookClien__id_bo__1A14E395" Association="EvaluacionFrancisModel.FK__bookClien__id_bo__1A14E395">
+            <End Role="book" EntitySet="books" />
+            <End Role="bookClient" EntitySet="bookClients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__bookClien__id_us__1920BF5C" Association="EvaluacionFrancisModel.FK__bookClien__id_us__1920BF5C">
+            <End Role="client" EntitySet="clients" />
+            <End Role="bookClient" EntitySet="bookClients" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="book">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="bookName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="tittle" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="edition" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="quality" Type="Int32" />
+          <NavigationProperty Name="bookClients" Relationship="EvaluacionFrancisModel.FK__bookClien__id_bo__1A14E395" FromRole="book" ToRole="bookClient" />
+        </EntityType>
+        <EntityType Name="bookClient">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="id_user" Type="Int32" />
+          <Property Name="id_book" Type="Int32" />
+          <NavigationProperty Name="book" Relationship="EvaluacionFrancisModel.FK__bookClien__id_bo__1A14E395" FromRole="bookClient" ToRole="book" />
+          <NavigationProperty Name="client" Relationship="EvaluacionFrancisModel.FK__bookClien__id_us__1920BF5C" FromRole="bookClient" ToRole="client" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="clientName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="idIdenti" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="bookClients" Relationship="EvaluacionFrancisModel.FK__bookClien__id_us__1920BF5C" FromRole="client" ToRole="bookClient" />
+        </EntityType>
+        <Association Name="FK__bookClien__id_bo__1A14E395">
+          <End Role="book" Type="EvaluacionFrancisModel.book" Multiplicity="0..1" />
+          <End Role="bookClient" Type="EvaluacionFrancisModel.bookClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="book">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bookClient">
+              <PropertyRef Name="id_book" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__bookClien__id_us__1920BF5C">
+          <End Role="client" Type="EvaluacionFrancisModel.client" Multiplicity="0..1" />
+          <End Role="bookClient" Type="EvaluacionFrancisModel.bookClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bookClient">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EvaluacionFrancisModelStoreContainer" CdmEntityContainer="BookClientsEntities">
+          <EntitySetMapping Name="books">
+            <EntityTypeMapping TypeName="EvaluacionFrancisModel.book">
+              <MappingFragment StoreEntitySet="book">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="bookName" ColumnName="bookName" />
+                <ScalarProperty Name="tittle" ColumnName="tittle" />
+                <ScalarProperty Name="edition" ColumnName="edition" />
+                <ScalarProperty Name="quality" ColumnName="quality" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookClients">
+            <EntityTypeMapping TypeName="EvaluacionFrancisModel.bookClient">
+              <MappingFragment StoreEntitySet="bookClient">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id_book" ColumnName="id_book" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="EvaluacionFrancisModel.client">
+              <MappingFragment StoreEntitySet="client">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="clientName" ColumnName="clientName" />
+                <ScalarProperty Name="idIdenti" ColumnName="idIdenti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "addBook";
+}
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/ScriptControllers/ControllerBook.js"></script>
+
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>Add Book</title>  
+  
+    
+</head>
+  <body>
+
+      <h1>Agregar un libro nuevo</h1>
+
+       <div ng-app="myAppBook">
+
+           <div ng-controller="myCtrlBook"> 
+
+               <div class="container">
+      
+               <form>
+        
+                   <div class="form-group">
+          
+                       <label for="name">Nombre: </label>        
+                       <input type="text" class="form-control" ng-model="inputName">   
+                            
+                   </div>             
+                   <div class="form-group">         
+                       <label for="name">Titulo: </label>       
+                       <input type="text" class="form-control" ng-model="inputTittle">       
+                   </div>
+     
+                   <div class="form-group">         
+                       <label for="name">Edicion: </label>         
+                       <input type="text" class="form-control" ng-model="inputEdition">                           
+                   </div>
+
+                    <div class="form-group">         
+                       <label for="name">Cantidad: </label>         
+                       <input type="text" class="form-control" ng-model="inputQuality">                           
+                   </div>
+        
+
+                   <div>
+          
+                       <div>
+                                       
+                           <button type="button" class="btn btn-success" ng-click="addBook()">Agregar libro</button>           
+                           <button type="button" class="btn btn-success" ng-click="clearAllInput()">Borrar campos</button>
+          
+                       </div>
+        
+                   </div>      
+      
+               </form>
+    
+           </div>
+
+
+           </div>
+           
+
+       </div>
+    
+  </body>
+
+</html>
+
+
+
+
