@@ -1,0 +1,67 @@
+﻿
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<script src="~/ScriptControllers/ControllerClient.js"></script>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>Add Client</title>
+
+
+</head>
+<body>
+
+    <div ng-app="myAppClient">
+
+        <div ng-controller="myCtrlClient">
+
+            <div class="container">
+
+                <form>
+
+                    <div class="row">
+                        <h1>Agregar un cliente nuevo</h1>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="name">Nombre: </label>
+                        <input type="text" class="form-control" ng-model="inputName">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Cedula: </label>
+                        <input type="number" class="form-control" ng-model="inputIdenty">
+                    </div>
+
+                    <div>
+                        <div>
+                            <button type="button" class="btn btn-success" ng-click="addClient()">Agregar cliente</button>
+                            <button type="button" class="btn btn-success" ng-click="clearAllInput()">Borrar campos</button>
+                            <button type="button" class="btn btn-success" ng-click="goToBookIndex()">Volver atras</button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

@@ -1,6 +1,4 @@
-﻿{
-    ViewBag.Title = "index";
-}
+﻿
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script src="~/Scripts/angular.js"></script>
 <script src="~/Scripts/bootstrap.js"></script>
@@ -15,91 +13,139 @@
     }
 </style>
 
-<h2>Libros disponibles</h2>
+.ScrollStyle
+{
+    max-height: 150px;
+    overflow-y: scroll;
+}
 
-  <div class="col-sm-6 col-lg-4">                      
-      <input type="button" class="form-control btn-space" value="Agregar un libro nuevo" ng-click="AddnewBook()" />                    
-  </div>
+    <body>
 
-<div ng-app="myAppBook">
-    <div ng-controller="myCtrlBook" ng-init="getAllBook()" class="divList">
-        <p class="divHead">List of Books</p>
-        <table cellpadding="12" class="table table-bordered table-hover">
-            <tr>
-                <td>
-                    <b>ID</b>
-                </td>
-                
-                <td>
-                    <b>Name</b>
-                </td>
-                
-                <td>
-                    <b>titulo</b>
-                </td>
-                
-                <td>
-                    <b>Edicion</b>
-                </td>
-                                
-            </tr>
-            <tr ng-repeat="book in books">
-                <td>
-                    {{book.id}}
-                </td>
-                
-                <td>
-                    {{book.bookName}}
-                </td>
-                
-                <td>
-                    {{book.tittle}}
-                </td>
+        <div style="overflow:scroll">
 
-                <td>
-                    {{book.edition}}
-                </td>
-                
-                <td>
-                    <input type="button" class="btn btn-warning" value="Update" ng-click="takeBook(book)" />
-                    <input type="button" class="btn btn-danger" value="Delete" ng-click="returnBook(book)" />
-                </td>
-            </tr>
-        </table>
-        <div class="form-horizontal" role="form">
-            <div class="container">
+            <div class="container col-sm-offset-1 col-sm-8">
+
                 <div class="row">
-                    <h2>
-                        <span id="spn">prestar libro a un cliente</span>
-                    </h2>
+                    <h2>Libros disponibles:</h2>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Nombre del cliente:</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputName" placeholder="Name" ng-model="ClientName">
+
+                <div ng-app="myAppBook">
+                    <div ng-controller="myCtrlBook" ng-init="getAllBooks()" class="divList">
+
+                        <div>
+                            <button type="button" class="btn btn-success" ng-click="BookManagement()">Manejo de libros</button>
+                            <button type="button" class="btn btn-success" ng-click="ClientManagement()">Manejo de Clientes</button>
+                        </div>
+
+                        <p>
+                            <br />
+                            <br />
+                        </p>
+
+                        <table cellpadding="12" class="table table-bordered table-hover">
+                            <tr>
+                                <td>
+                                    <b>ID</b>
+                                </td>
+
+                                <td>
+                                    <b>Nombre</b>
+                                </td>
+
+                                <td>
+                                    <b>Titulo</b>
+                                </td>
+
+                                <td>
+                                    <b>Edicion</b>
+                                </td>
+
+                                <td>
+                                    <b>Disponibles</b>
+                                </td>
+
+                                <td>
+                                    <b>Acciones</b>
+                                </td>
+
+                            </tr>
+                            <tr ng-repeat="book in books">
+                                <td>
+                                    {{book.id}}
+                                </td>
+
+                                <td>
+                                    {{book.bookName}}
+                                </td>
+
+                                <td>
+                                    {{book.tittle}}
+                                </td>
+
+                                <td>
+                                    {{book.edition}}
+                                </td>
+
+                                <td>
+                                    {{book.quality}}
+                                </td>
+
+                                <td>
+                                    <input type="button" class="btn btn-warning" value="Seleccionar libro" ng-click="selectBook(book)" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-horizontal" role="form">
+                            <div class="container">
+                                <div class="row">
+                                    <h3>
+                                        <span id="spn">Prestar libro a un cliente</span>
+                                    </h3>
+                                </div>
+                                <div class="row">
+
+                                    <div>
+                                        <p>
+                                            Libro a prestar:
+                                            <label ng-model="labelBookName"></label>
+                                            <label ng-model="labelBookId"></label>
+                                        </p>
+
+                                    </div>
+                                    <div>
+                                        <p>
+                                            Cedula del cliente: <input type="text" placeholder="cedula" ng-model="inputClientIdenty">
+                                            <button type="button" class="btn btn-success" ng-click="findClientByIdenty()">Buscar cliente</button>
+
+                                            <label ng-model="labelClientName"></label>
+                                            <label ng-model="labelClientId"></label>
+                                        </p>
+                                    </div>
+
+                                    <div>
+
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-4">
+                                        <input type="button" id="btnSave" class="form-control btn-space" value="PRESTAR" ng-click="takeBook()" />
+                                        <input type="button" id="btnSave" class="form-control btn-space" value="DEVOLVER" ng-click="returnBook()" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Cedula del cliente:</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="inputAddress" placeholder="Address" ng-model="Identyclient">
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-                <div class="row">
-                    <div class="col-sm-6 col-lg-4">
-                        <input type="button" id="btnSave" class="form-control btn-space" value="Submit" ng-click="TakeBook()" />
-                    </div>
+
+                    @Html.Hidden("BookID_")
                 </div>
             </div>
         </div>
-    </div>
-    @Html.Hidden("BookID_")
+    </body>
 
-</div>
+
+
+
+
+
 

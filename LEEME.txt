@@ -1,0 +1,10 @@
+ConnectionString en el web.config para la pc de Dester
+
+si es otra pc, cambiar todos los valores de "data source" por el data source del SQL-Server su pc.
+
+<connectionStrings>
+    <add name="EvaluacionFrancisEntities" connectionString="metadata=res://*/Models.BookModel.csdl|res://*/Models.BookModel.ssdl|res://*/Models.BookModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=CCD01;initial catalog=EvaluacionFrancis;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="BooksTakenEntities" connectionString="metadata=res://*/Models.BookModel.csdl|res://*/Models.BookModel.ssdl|res://*/Models.BookModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=CCD01;initial catalog=EvaluacionFrancis;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+    <add name="BookClientsEntities" connectionString="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=CCD01;initial catalog=EvaluacionFrancis;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+

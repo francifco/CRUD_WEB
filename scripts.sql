@@ -31,8 +31,12 @@ FOREIGN KEY (id_user) REFERENCES client(id),
 FOREIGN KEY (id_book) REFERENCES book(id)
 )
 
-use EvaluacionFrancis;
-select * from book
+insert into book(bookName, tittle, edition, quality)
+values('nacho','nacho','2016',15),
+('Antillana','Ciencias sociales','2016',20),
+('Susaeta','Lengua española','2015',10),
+('Baldol','Baldol','2015',10)
+
 
 
 

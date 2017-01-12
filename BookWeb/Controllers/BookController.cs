@@ -18,19 +18,12 @@ namespace BookWeb.Controllers
         }
 
 
-        public ActionResult addBook()
+        public ActionResult BookManagement()
         {
             return View();
         }
 
-        //To do
-        public ActionResult takeBook()
-        {
-            return View();
-        }
-
-
-
+    
         /// <summary>
         /// Metodo responsable de agregar un libro tomado (actualiza).
         /// </summary>
@@ -38,12 +31,12 @@ namespace BookWeb.Controllers
         /// <param name="clientEntity">client: Objeto representante del cliente</param>
         /// <returns>string: si ha sido tomado o nop</returns>
         [HttpPost]
-        public string Take_Book(book bookEntity, client clientEntity, bookClient bookclient)
+        public string Take_Book(bookClient bookclient)
         {
             using (BookClientsEntities db = new BookClientsEntities())
             {
                 var objectQuery = from b in db.books
-                                 where b.id == bookEntity.id 
+                                 where b.id == bookclient.id_book
                                  select b;
 
                 book objectBook = objectQuery.Single();
@@ -54,8 +47,8 @@ namespace BookWeb.Controllers
                     objectBook.quality--;
                     db.SaveChanges();
 
-                    objectbookclient.id_book = bookEntity.id;
-                    objectbookclient.id_user = clientEntity.id;
+                    objectbookclient.id_book = bookclient.id_book;
+                    objectbookclient.id_user = bookclient.id_user;
                     db.bookClients.Add(objectbookclient);
                     db.SaveChanges();
 
@@ -67,6 +60,7 @@ namespace BookWeb.Controllers
                 return "El libro ha sido tomado";
             }       
         }
+
 
         /// <summary>
         /// Agrega un nuevo libro en la BD.
@@ -94,15 +88,18 @@ namespace BookWeb.Controllers
         /// <summary>
         /// obtine todos los libros disponibles
         /// </summary>
-        /// <returns>books: listado de los libros</returns>
+        /// <returns>books: listado de todos los libros</returns>
         [HttpGet]
         public JsonResult fetch_All_Book()
         {
-            using (BookClientsEntities db = new BookClientsEntities())
+            using (BookClientsEntities db= new BookClientsEntities())
             {
-                return Json(db.Set<book>());
+                db.Configuration.LazyLoadingEnabled = false;
+
+                List<book> objtBook = db.books.ToList();
+                return Json(objtBook, JsonRequestBehavior.AllowGet);
             }
-        
+
         }
 
         /// <summary>

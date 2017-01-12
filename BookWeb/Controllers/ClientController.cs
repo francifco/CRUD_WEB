@@ -12,9 +12,29 @@ namespace BookWeb.Controllers
         //
         // GET: /Client/
 
-        public ActionResult Index()
+        public ActionResult ClientManagement()
         {
             return View();
+        }
+
+        /// <summary>
+        /// Busca a un cliente en especifico deacuerdo a su cedula.
+        /// </summary>
+        /// <param name="identify">string: cedula del cliente</param>
+        /// <returns>client: objeto representante del cliente</returns>
+        [HttpGet]
+        public client find_client_By_Identy(client clientEntity)
+        {
+            using (BookClientsEntities db = new BookClientsEntities())
+            {
+                var selectEmpQuery = from clientq in db.clients
+                                     where clientq.idIdenti == clientEntity.idIdenti
+                                     select clientq;
+
+                client Client = selectEmpQuery.Single();
+                return Client;
+            }
+    
         }
 
         /// <summary>
@@ -44,7 +64,7 @@ namespace BookWeb.Controllers
         /// <param name="clientEntity">objeto: representante de un cliente</param>
         /// <returns>string: msj si el cliente fue agregado.</returns>
         [HttpPost]
-        public string UpdateEmployee(client clientEntity)
+        public string UpdateClient(client clientEntity)
         {
             using (BookClientsEntities db = new BookClientsEntities())
             {

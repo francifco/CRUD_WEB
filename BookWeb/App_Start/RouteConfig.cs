@@ -23,8 +23,15 @@ namespace BookWeb
             routes.MapRoute(
                 name: "Book",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Book", action = "addBook", id = UrlParameter.Optional }
+                defaults: new { controller = "Book", action = "BookManagement", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "Client",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Client", action = "ClientManagement", id = UrlParameter.Optional }
+           );
+
         }
     }
 }
