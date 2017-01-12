@@ -57,15 +57,22 @@ app.controller("myCtrlBook", function ($scope, $http) {
             params: { idIdenti: $scope.inputClientIdenty }
         }).then(function (response) {
 
-            $scope.labelClientName = response.data.clientName;
-            $scope.labelClientId = response.data.id;
+            if (response.data === undefined) {
+                alert("el cliente no ha sido encontrado.");
+            } else {
+                $scope.inputClientName = response.data.clientName;
+                document.getElementById("ClientID_").value = response.data.id;
+            }
+
         })
     }
 
 
     $scope.selectBook = function (book) {
-        $scope.labelBookName = book.bookName;
-        $scope.labelBookId = book.id;
+
+        document.getElementById("BookID_").value = book.id;
+        $scope.inputBookName = book.bookName;
+        
     }
 
     $scope.TakeBook = function (book) {

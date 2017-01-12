@@ -106,9 +106,7 @@
 
                                     <div>
                                         <p>
-                                            Libro a prestar:
-                                            <label ng-model="labelBookName"></label>
-                                            <label ng-model="labelBookId"></label>
+                                            Libro a prestar: <input type="text" ng-model="inputBookName">
                                         </p>
 
                                     </div>
@@ -117,8 +115,8 @@
                                             Cedula del cliente: <input type="text" placeholder="cedula" ng-model="inputClientIdenty">
                                             <button type="button" class="btn btn-success" ng-click="findClientByIdenty()">Buscar cliente</button>
 
-                                            <label ng-model="labelClientName"></label>
-                                            <label ng-model="labelClientId"></label>
+                                            <input type="text" ng-model="inputClientName">
+                                         
                                         </p>
                                     </div>
 
@@ -138,6 +136,7 @@
                     </div>
 
                     @Html.Hidden("BookID_")
+                    @Html.Hidden("ClientID_")
                 </div>
             </div>
         </div>

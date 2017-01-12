@@ -31,8 +31,19 @@ namespace BookWeb.Controllers
                                      where clientq.idIdenti == clientEntity.idIdenti
                                      select clientq;
 
-                client Client = selectEmpQuery.Single();
+                client Client;
+
+                try
+                {
+                    Client = selectEmpQuery.Single();
+                    
+                }
+                catch {
+                    return null;
+                }
+
                 return Client;
+
             }
     
         }
